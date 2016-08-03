@@ -14,6 +14,7 @@ MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 # Prepare rootfs for image-builder
 RUN /usr/local/sbin/builder-enter
 
+COPY ./overlay/tmp /tmp
 
 # Install packages
 RUN apt-get -q update                   \
@@ -107,7 +108,7 @@ RUN case "${ARCH}" in                                                           
 
 
 # Patch rootfs
-COPY ./overlay /
+COPY ./overlay/usr /usr
 RUN systemctl disable docker; systemctl enable docker
 
 
