@@ -13,6 +13,7 @@ MountFlags=slave
 LimitNOFILE=1048576
 LimitNPROC=1048576
 LimitCORE=infinity
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
