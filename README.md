@@ -1,7 +1,4 @@
-# Docker image on Scaleway
-[![Build Status](https://travis-ci.org/scaleway-community/scaleway-docker.svg?branch=master)](https://travis-ci.org/scaleway-community/scaleway-docker)
-[![Scaleway ImageHub](https://img.shields.io/badge/ImageHub-view-ff69b4.svg)](https://hub.scaleway.com/docker.html)
-[![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](https://cloud.scaleway.com/#/servers/new?image=c1b530d8-0ca0-45c4-80db-ba06608287b2)
+# Docker image (Debian) on Scaleway
 
 
 Launch your Docker app on Scaleway servers in minutes.

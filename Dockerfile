@@ -1,11 +1,11 @@
 ## -*- docker-image-name: "scaleway/docker" -*-
-FROM scaleway/ubuntu:amd64-xenial
+FROM scaleway/debian:amd64-jessue
 # following 'FROM' lines are used dynamically thanks do the image-builder
 # which dynamically update the Dockerfile if needed.
-#FROM scaleway/ubuntu:armhf-xenial	# arch=armv7l
-#FROM scaleway/ubuntu:arm64-xenial	# arch=arm64
-#FROM scaleway/ubuntu:i386-xenial	# arch=i386
-#FROM scaleway/ubuntu:mips-xenial	# arch=mips
+#FROM scaleway/debian:armhf-jessie	# arch=armv7l
+#FROM scaleway/debian:arm64-jessie	# arch=arm64
+#FROM scaleway/debian:i386-jessie	# arch=i386
+#FROM scaleway/debian:mips-jessie	# arch=mips
 
 
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
@@ -16,8 +16,7 @@ RUN /usr/local/sbin/builder-enter
 
 
 # Install packages
-RUN sed -i '/mirror.scaleway/s/^/#/' /etc/apt/sources.list \
- && apt-get -q update                   \
+RUN apt-get -q update                   \
  && apt-get --force-yes -y -qq upgrade  \
  && apt-get --force-yes install -y -q   \
 	apparmor			\
@@ -42,7 +41,7 @@ RUN apt-get install $(apt-cache depends docker.io | grep Depends | sed "s/.*ends
 # Install Docker
 RUN case "${ARCH}" in                                                                                 \
     armv7l|armhf|arm)                                                                                 \
-      curl -s https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | os=Debian dist=jessie bash &&  \
+      curl -s https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | bash &&  \
       apt-get install docker-engine -y &&                                                                \
       systemctl enable docker;                                                                        \
       ;;                                                                                              \
