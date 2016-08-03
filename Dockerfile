@@ -31,7 +31,6 @@ RUN apt-get -q update                   \
 	lxc				\
 	python-setuptools               \
 	vlan				\
-  build-essential  \
  && apt-get clean
 
 
@@ -44,10 +43,8 @@ RUN case "${ARCH}" in                                                           
     armv7l|armhf|arm)                                                                                 \
     #  curl -s https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | bash &&  \
     #  apt-get install docker-engine -y &&                                                                \
-      git clone https://github.com/docker/docker.git /tmp/docker && cd /tmp/docker && git checkout v1.12.0 && \
-      git fetch origin pull/25192/head:fix-manpages-on-arm && git cherry-pick fix-manpages-on-arm && \
-      make deb && dpkg -i bundles/1.12.0/build-deb/debian-jessie/docker-engine_1.12.0-0~jessie_armhf.deb && \
-      rm -fr /tmp/docker && \
+      dpkg -i /tmp/docker-engine_1.12.0.jessie_armhf.deb && \
+      rm -f /tmp/docker-engine_1.12.0.jessie_armhf.deb && \
       systemctl enable docker;                                                                        \
       ;;                                                                                              \
     amd64|x86_64|i386)                                                                                \
