@@ -1,4 +1,15 @@
+sudo: required
+
 language: bash
 
+services:
+    - docker
+
+before_install:
+    - sudo apt-get -y install docker.io debootstrap qemu-user-static debootstrap
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 script:
-    - make travis
+    - make info DOCKER_NAMESPACE="meyskens/" NAME=docker-debian
+    - make build DOCKER_NAMESPACE="meyskens/" NAME=docker-debian
+    - make build DOCKER_NAMESPACE="meyskens/" NAME=docker-debian ARCH=armhf
+    - docker push meyskens/docker-debian
