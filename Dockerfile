@@ -24,7 +24,7 @@ RUN apt-get -q update                   \
 	aufs-tools			\
 	btrfs-tools			\
 	bridge-utils                    \
-	cgroup-lite			\
+	cgroup-bin			\
 	git				\
 	ifupdown			\
 	kmod				\
