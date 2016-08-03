@@ -54,7 +54,7 @@ RUN case "${ARCH}" in                                                           
       echo "Unhandled architecture: ${ARCH}."; exit 1;                                                \
       ;;                                                                                              \
     esac                                                                                              \
- && rm -f /tmp/docker-engine_1.12.0.jessie_armhf.deb && \
+ && rm -f /tmp/docker-engine_1.12.0.jessie_armhf.deb \
  && docker --version
 
 
