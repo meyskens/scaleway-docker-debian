@@ -45,7 +45,6 @@ RUN case "${ARCH}" in                                                           
     #  curl -s https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | bash &&  \
     #  apt-get install docker-engine -y &&                                                                \
       dpkg -i /tmp/docker-engine_1.12.0.jessie_armhf.deb && \
-      rm -f /tmp/docker-engine_1.12.0.jessie_armhf.deb && \
       systemctl enable docker;                                                                        \
       ;;                                                                                              \
     amd64|x86_64|i386)                                                                                \
@@ -55,6 +54,7 @@ RUN case "${ARCH}" in                                                           
       echo "Unhandled architecture: ${ARCH}."; exit 1;                                                \
       ;;                                                                                              \
     esac                                                                                              \
+ && rm -f /tmp/docker-engine_1.12.0.jessie_armhf.deb && \
  && docker --version
 
 
@@ -109,6 +109,7 @@ RUN case "${ARCH}" in                                                           
 
 # Patch rootfs
 COPY ./overlay/usr /usr
+COPY ./overlay/etc /etc
 RUN systemctl disable docker; systemctl enable docker
 
 
