@@ -1,5 +1,5 @@
 ## -*- docker-image-name: "scaleway/docker" -*-
-FROM scaleway/debian:amd64-jessue
+FROM scaleway/debian:amd64-jessie
 # following 'FROM' lines are used dynamically thanks do the image-builder
 # which dynamically update the Dockerfile if needed.
 #FROM scaleway/debian:armhf-jessie	# arch=armv7l
