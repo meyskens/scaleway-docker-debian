@@ -6,8 +6,8 @@ services:
     - docker
 
 before_install:
-    - sudo apt-get -y install docker.io debootstrap qemu-user-static debootstrap
-    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - sudo apt-get -y install qemu-user-static 
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 script:
     - make info DOCKER_NAMESPACE="meyskens/" NAME=docker-debian
     - make build DOCKER_NAMESPACE="meyskens/" NAME=docker-debian
