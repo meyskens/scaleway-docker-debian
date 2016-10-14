@@ -1,6 +1,6 @@
 NAME =			docker
 VERSION =		latest
-VERSION_ALIASES =	1.12.0 1.12 1
+VERSION_ALIASES =	1.12.1 1.12 1
 TITLE =			Docker
 DESCRIPTION =		Docker + Docker-Compose + gosu + nsenter + pipework
 SOURCE_URL =		https://github.com/meyskens/scaleway-docker-debian
