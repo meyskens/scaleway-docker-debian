@@ -42,9 +42,9 @@ RUN apt-get install $(apt-cache depends docker.io | grep Depends | sed "s/.*ends
 # Install Docker
 RUN case "${ARCH}" in                                                                                 \
     armv7l|armhf|arm)                                                                                 \
-    #  curl -s https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | bash &&  \
-    #  apt-get install docker-engine -y &&                                                                \
-      dpkg -i /tmp/docker-engine_1.12.0.jessie_armhf.deb && \
+      curl -Ls https://apt.dockerproject.org/repo/pool/main/d/docker-engine/docker-engine_1.12.1-0~jessie_armhf.deb > docker.deb && \
+      dpkg -i docker.deb && \
+      rm -f docker.deb && \
       systemctl enable docker;                                                                        \
       ;;                                                                                              \
     amd64|x86_64|i386)                                                                                \
@@ -54,7 +54,6 @@ RUN case "${ARCH}" in                                                           
       echo "Unhandled architecture: ${ARCH}."; exit 1;                                                \
       ;;                                                                                              \
     esac                                                                                              \
- && rm -f /tmp/docker-engine_1.12.0.jessie_armhf.deb \
  && docker --version
 
 
