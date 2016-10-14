@@ -14,8 +14,6 @@ MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 # Prepare rootfs for image-builder
 RUN /usr/local/sbin/builder-enter
 
-COPY ./overlay/tmp /tmp
-
 # Install packages
 RUN apt-get -q update                   \
  && apt-get --force-yes -y -qq upgrade  \
