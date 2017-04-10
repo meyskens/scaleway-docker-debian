@@ -40,7 +40,7 @@ RUN apt-get install $(apt-cache depends docker.io | grep Depends | sed "s/.*ends
 # Install Docker
 RUN case "${ARCH}" in                                                                                 \
     armv7l|armhf|arm)                                                                                 \
-      curl -Ls https://apt.dockerproject.org/repo/pool/main/d/docker-engine/docker-engine_1.12.1-0~jessie_armhf.deb > docker.deb && \
+      curl -Ls https://apt.dockerproject.org/repo/pool/main/d/docker-engine/docker-engine_17.03.0~ce-0~debian-jessie_armhf.deb > docker.deb && \
       dpkg -i docker.deb && \
       rm -f docker.deb && \
       systemctl enable docker;                                                                        \
@@ -51,35 +51,12 @@ RUN case "${ARCH}" in                                                           
     *)                                                                                                \
       echo "Unhandled architecture: ${ARCH}."; exit 1;                                                \
       ;;                                                                                              \
-    esac                                                                                              \
- && docker --version
+    esac                                                                                              
 
 
 # Install Pipework
 RUN wget -qO /usr/local/bin/pipework https://raw.githubusercontent.com/jpetazzo/pipework/master/pipework  \
  && chmod +x /usr/local/bin/pipework
-
-
-# Install Gosu
-ENV GOSU_VERSION=1.7
-RUN case "${ARCH}" in                                                                                                \
-    armv7l|armhf|arm)                                                                                                \
-        wget -qO /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-armhf &&  \
-        chmod +x /usr/local/bin/gosu;                                                                                \
-      ;;                                                                                                             \
-    aarch64|arm64)                                                                                                   \
-        wget -qO /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-arm64 &&  \
-        chmod +x /usr/local/bin/gosu;                                                                                \
-      ;;                                                                                                             \
-    x86_64|amd64)                                                                                                    \
-        wget -qO /usr/local/bin/gosu https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 &&  \
-        chmod +x /usr/local/bin/gosu;                                                                                \
-	;;                                                                                                           \
-    *)                                                                                                               \
-	echo "Unhandled architecture: ${ARCH}."; exit 1;                                                             \
-      ;;                                                                                                             \
-    esac                                                                                                             \
- && ( gosu --version || true )
 
 
 
