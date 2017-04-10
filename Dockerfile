@@ -38,20 +38,7 @@ RUN apt-get install $(apt-cache depends docker.io | grep Depends | sed "s/.*ends
 
 
 # Install Docker
-RUN case "${ARCH}" in                                                                                 \
-    armv7l|armhf|arm)                                                                                 \
-      curl -Ls https://apt.dockerproject.org/repo/pool/main/d/docker-engine/docker-engine_17.03.0~ce-0~debian-jessie_armhf.deb > docker.deb && \
-      dpkg -i docker.deb && \
-      rm -f docker.deb && \
-      systemctl enable docker;                                                                        \
-      ;;                                                                                              \
-    amd64|x86_64|i386)                                                                                \
-      curl -L https://get.docker.com/ | sh;                                                           \
-      ;;                                                                                              \
-    *)                                                                                                \
-      echo "Unhandled architecture: ${ARCH}."; exit 1;                                                \
-      ;;                                                                                              \
-    esac                                                                                              
+RUN curl -L https://get.docker.com/ | sh;                                                                                             
 
 
 # Install Pipework
